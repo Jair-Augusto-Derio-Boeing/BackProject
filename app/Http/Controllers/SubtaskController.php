@@ -11,14 +11,13 @@ class SubtaskController extends Controller
 {
     public function index()
     {
-        //
+
     }
     public function store(Request $request)
     {
         $validation = Validator::make($request->all(), [
             'titleSubtask' => 'required|string|min:3|max:40,title',
             'statusSubtask' => 'string',
-            'descriptionSubtask' => 'string',
             'id_task'=> 'required|integer|exists:tasks,id'
         ]);
         if ($validation->fails()) {
@@ -27,7 +26,6 @@ class SubtaskController extends Controller
         $subtask = Subtask::create([
             'titleSubtask' => $request->input('titleSubtask'),
             'statusSubtask' => $request->input('statusSubtask'),
-            'descriptionSubtask' => $request->input('descriptionSubtask'),
             'id_task' => $request->input('id_task')
         ]);
         return response()->json([
@@ -43,11 +41,11 @@ class SubtaskController extends Controller
 
     public function update(Request $request, Subtask $subtask)
     {
-        
+        $subtask->fill($request->all())->update();
     }
 
     public function destroy(Subtask $subtask)
     {
-        
+        $subtask->delete();
     }
 }
