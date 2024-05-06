@@ -17,6 +17,7 @@ class SubtaskController extends Controller
     {
         $validation = Validator::make($request->all(), [
             'titleSubtask' => 'required|string|min:3|max:40,title',
+            'descriptionSubtask' => 'string',
             'statusSubtask' => 'string',
             'id_task'=> 'required|integer|exists:tasks,id'
         ]);
@@ -25,6 +26,7 @@ class SubtaskController extends Controller
         }
         $subtask = Subtask::create([
             'titleSubtask' => $request->input('titleSubtask'),
+            'descriptionSubtask' => $request->input('descriptionSubtask'),
             'statusSubtask' => $request->input('statusSubtask'),
             'id_task' => $request->input('id_task')
         ]);

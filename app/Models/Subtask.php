@@ -12,6 +12,7 @@ class Subtask extends Model
     protected $table = 'subtasks';
     protected $fillable = [
         'titleSubtask',
+        'descriptionSubtask',
         'statusSubtask',
         'id_task',
     ];
